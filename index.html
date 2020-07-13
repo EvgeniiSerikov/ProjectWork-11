@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mesto</title>
+  <link rel="stylesheet" href="./pages/style.css">
+</head>
+
+<body>
+  <div class="root">
+    <header class="header root__section">
+      <img src="./images/logo.svg" alt="mesto logo" class="logo">
+    </header>
+    <div class="profile root__section">
+      <div class="user-info">
+        <div class="user-info__photo"></div>
+        <div class="user-info__data">
+          <h1 class="user-info__name"></h1>
+          <p class="user-info__job"></p>
+          <button class="button user-info__button-edit">Edit</button>
+        </div>
+        <button class="button user-info__button">+</button>
+      </div>
+    </div>
+    <div class="places-list root__section">
+
+      <!-- Пример вёрстки карточки: -->
+      <template id="card-template" style="display: none">
+        <div class="place-card">
+          <span class="place-card__id"></span>
+          <div class="place-card__image"
+            style="background-image: url(https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg)">
+            <button class="place-card__delete-icon"></button>
+          </div>
+          <div class="place-card__description">
+            <h3 class="place-card__name">Камчатка</h3>
+            <div class="place-card__like-container">
+              <button class="place-card__like-icon"></button>
+              <p class="place-card__like-figure"></p>
+            </div>
+          </div>
+        </div>
+      </template>
+      <!-- конец примера. -->
+
+    </div>
+    <div class="popup-image">
+      <div class="popup-image__content">
+        <img src="./images/close.svg" alt="" class="popup-image__close">
+        <img src="" alt="" class="popup-image__img">
+      </div>
+    </div>
+
+
+    <div id="popup" class="popup">
+      <div class="popup__content">
+        <img id="popup-close" src="./images/close.svg" alt="" class="popup__close">
+        <div class="popup__dynamic-content popop__add-form" id="add-form-dynamic-content">
+          <h3 class="popup__title">Новое место</h3>
+          <form id="new-card" class="popup__form form-new-card" name="new" novalidate>
+            <input id="new-name" type="text" name="name" class="popup__input popup__input_type_name" minlength="2"
+              maxlength="30" required placeholder="Название">
+            <span id="new-name-error" class="error" aria-live="polite"></span>
+            <input id="new-link" type="url" name="link" class="popup__input popup__input_type_link-url" required
+              placeholder="Ссылка на картинку">
+            <span id="new-link-error" class="error" aria-live="polite"></span>
+            <button type="submit" class="button popup__button popup__button_add popup__button_valid">Сохранить</button>
+          </form>
+        </div>
+        <div class="popup__dynamic-content popop__edit-form" id="edit-form-dynamic-content">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <form class="popup__form" name="profile" novalidate>
+            <input id="profile-name" type="text" name="author_name" class="popup__input popup__input_type_author-name"
+              minlength="2" maxlength="30" required placeholder="Имя">
+            <span id="profile-name-error" class="error" aria-live="polite"></span>
+            <input id="profile-about" type="text" name="about" class="popup__input popup__input_type_about"
+              minlength="2" maxlength="30" required placeholder="О себе">
+            <span id="profile-about-error" class="error" aria-live="polite"></span>
+            <button type="submit" class="button popup__button popup__button_save popup__button_valid">Сохранить</button>
+          </form>
+        </div>
+        <div class="popup__dynamic-content popop__avatar-form" id="avatar-form-dynamic-content">
+          <h3 class="popup__title">Обновить аватар</h3>
+          <form id="new-avatar" class="popup__form" name="avatar" novalidate>
+            <input id="link-avatar" type="url" name="link-avatar" class="popup__input popup__input_type_link-avatar-url"
+              required placeholder="Ссылка на аватар">
+            <span id="link-avatar-error" class="error" aria-live="polite"></span>
+            <button type="submit" class="button popup__button popup__button_save popup__button_valid">Сохранить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="./scripts/ImgPopup.js"></script>
+  <script src="./scripts/Card.js"></script>
+  <script src="./scripts/CardList.js"></script>
+  <script src="./scripts/FormValidator.js"></script>
+  <script src="./scripts/Popup.js"></script>
+  <script src="./scripts/UserInfo.js"></script>
+  <script src="./scripts/Api.js"></script>
+  <script src="./scripts/main.js"></script>
+</body>
+
+</html>
+
+<!-- <div id="popup-add-card" class="popup">
+  <div class="popup__content">
+    <img id="close-add-card" src="./images/close.svg" alt="" class="popup__close">
+    <h3 class="popup__title">Новое место</h3>
+    <form class="popup__form" name="new" novalidate>
+      <input id="new-name" type="text" name="name" class="popup__input popup__input_type_name" minlength="2"
+        maxlength="30" required placeholder="Название">
+      <span id="new-name-error" class="error" aria-live="polite"></span>
+      <input id="new-link" type="url" name="link" class="popup__input popup__input_type_link-url" required
+        placeholder="Ссылка на картинку">
+      <span id="new-link-error" class="error" aria-live="polite"></span>
+      <button type="submit" class="button popup__button popup__button_add popup__button_valid">+</button>
+    </form>
+  </div>
+</div> -->
+
+<!-- <div id="popup-edit" class="popup">
+  <div class="popup__content">
+    <img id="close-edit" src="./images/close.svg" alt="" class="popup__close">
+    <h3 class="popup__title">Редактировать профиль</h3>
+    <form class="popup__form" name="profile" novalidate>
+      <input id="profile-name" type="text" name="author_name" class="popup__input popup__input_type_author-name"
+        minlength="2" maxlength="30" required placeholder="Имя">
+      <span id="profile-name-error" class="error" aria-live="polite"></span>
+      <input id="profile-about" type="text" name="about" class="popup__input popup__input_type_about" minlength="2"
+        maxlength="30" required placeholder="О себе">
+      <span id="profile-about-error" class="error" aria-live="polite"></span>
+      <button type="submit" class="button popup__button popup__button_save popup__button_valid">Сохранить</button>
+    </form>
+  </div>
+</div> -->
